@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import TestApi from './components/TestApi';
 import ItemManagement from './components/ItemManagement';
 import UserManagement from './components/UserManagement';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
@@ -40,11 +41,21 @@ function App() {
           borderRadius: '8px',
           transition: 'background 0.2s'
         }}>👥 User Management</Link>
+        <Link to="/profile" style={{
+          color: '#fff',
+          textDecoration: 'none',
+          fontWeight: '500',
+          fontSize: '1rem',
+          padding: '8px 16px',
+          borderRadius: '8px',
+          transition: 'background 0.2s'
+        }}>👤 User Profile</Link>
       </nav>
       <Routes>
         <Route path="/test_api" element={<TestApi />} />
         <Route path="/items" element={<ItemManagement />} />
         <Route path="/users" element={<UserManagement />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );
