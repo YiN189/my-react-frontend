@@ -17,7 +17,7 @@ function UserManagement() {
     // Search state
     const [searchTerm, setSearchTerm] = useState('');
 
-    const API_URL = 'http://localhost:3000/api/user';
+    const API_URL = '/api/user';
 
     // Fetch users
     async function fetchUsers() {

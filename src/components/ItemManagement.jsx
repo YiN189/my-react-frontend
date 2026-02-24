@@ -14,7 +14,7 @@ function ItemManagement() {
   // Edit state
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = 'http://localhost:3000/api/item';
+  const API_URL = '/api/item';
 
   // Fetch items
   async function fetchItems() {
@@ -49,7 +49,7 @@ function ItemManagement() {
           itemPrice: parseFloat(itemPrice)
         })
       });
-      
+
       if (response.ok) {
         clearForm();
         fetchItems();
@@ -76,7 +76,7 @@ function ItemManagement() {
           itemPrice: parseFloat(itemPrice)
         })
       });
-      
+
       if (response.ok) {
         clearForm();
         setEditingId(null);
@@ -94,15 +94,15 @@ function ItemManagement() {
   // Delete item
   async function handleDelete(id) {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
-    
+
     try {
       const response = await fetch(`${API_URL}/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
-      
+
       console.log('Delete response:', response);
-      
+
       if (response.ok) {
         fetchItems();
         alert('Item deleted!');
@@ -138,7 +138,7 @@ function ItemManagement() {
       {/* Form */}
       <form onSubmit={editingId ? handleUpdate : handleCreate} style={{ marginBottom: '20px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
         <h2>{editingId ? 'Edit Item' : 'Add New Item'}</h2>
-        
+
         <div style={{ marginBottom: '10px' }}>
           <label>Item Name: </label>
           <input
@@ -176,7 +176,7 @@ function ItemManagement() {
         <button type="submit" style={{ padding: '10px 20px', marginRight: '10px' }}>
           {editingId ? 'Update' : 'Create'}
         </button>
-        
+
         {editingId && (
           <button type="button" onClick={clearForm} style={{ padding: '10px 20px' }}>
             Cancel
@@ -208,7 +208,7 @@ function ItemManagement() {
                 <td style={{ border: '1px solid #ccc', padding: '10px' }}>{item.status}</td>
                 <td style={{ border: '1px solid #ccc', padding: '10px' }}>
                   <button onClick={() => handleEdit(item)} style={{ marginRight: '5px' }}>Edit</button>
-                  <button onClick={() => { alert('Delete clicked: ' + item._id);  handleDelete(item._id); }}>Delete</button>
+                  <button onClick={() => { alert('Delete clicked: ' + item._id); handleDelete(item._id); }}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -218,16 +218,16 @@ function ItemManagement() {
 
       {/* Pagination */}
       <div style={{ marginTop: '20px' }}>
-        <button 
-          onClick={() => setPage(p => Math.max(1, p - 1))} 
+        <button
+          onClick={() => setPage(p => Math.max(1, p - 1))}
           disabled={page === 1}
           style={{ padding: '10px 20px', marginRight: '10px' }}
         >
           Previous
         </button>
         <span>Page {page} of {totalPages}</span>
-        <button 
-          onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
+        <button
+          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
           disabled={page === totalPages}
           style={{ padding: '10px 20px', marginLeft: '10px' }}
         >

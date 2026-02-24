@@ -19,8 +19,8 @@ function UserProfile() {
     const [previewUrl, setPreviewUrl] = useState(null);
     const [uploadError, setUploadError] = useState('');
 
-    const API_URL = 'http://localhost:3000/api/user';
-    const BACKEND_URL = 'http://localhost:3000';
+    const API_URL = '/api/user';
+    const BACKEND_URL = '';
 
     // Fetch all users for the selector dropdown
     async function fetchUsers() {
